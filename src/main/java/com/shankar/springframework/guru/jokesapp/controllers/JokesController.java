@@ -2,6 +2,7 @@ package com.shankar.springframework.guru.jokesapp.controllers;
 
 import com.shankar.springframework.guru.jokesapp.services.JokeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,7 +15,8 @@ public class JokesController {
     }
 
     @RequestMapping(path={"/", ""})
-    public String getJoke(){
-        return jokeService.getJoke();
+    public String getJoke(Model model){
+        model.addAttribute("joke", jokeService.getJoke());
+        return "joke";
     }
 }
